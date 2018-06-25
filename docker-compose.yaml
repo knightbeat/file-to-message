@@ -1,0 +1,24 @@
+version: '2'
+services:
+  sftp:
+    container_name: ftp.sample.com
+    build: 
+        context: .
+        dockerfile: sftp/Dockerfile
+    volumes:
+        - C:\share\in:/home/foo/share/in
+        - C:\share\out:/home/foo/share/out
+        - C:\share\err:/home/foo/share/err
+    ports:
+        - "2222:22"
+    command: foo:123:1001
+  esb:
+    container_name: esb.sample.com
+    build:
+      context: .
+      dockerfile: esb/Dockerfile
+    ports:
+      - "9763:9763"
+      - "9443:9443"
+      - "8280:8280"
+      - "8243:8243"
